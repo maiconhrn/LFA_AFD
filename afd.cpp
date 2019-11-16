@@ -32,13 +32,9 @@ Transicao::Transicao() {}
 Transicao::Transicao(const Estado &de, char com, const Estado &para) : de(de), com(com), para(para) {}
 
 bool AFD::existe_transicao(Estado de, char com, Estado &para) {
-    Transicao transicao_i;
-
-    for (int i = 0; i < n_trasicoes; ++i) {
-        transicao_i = transicoes[i];
-
-        if (transicao_i.de.nome == de.nome && transicao_i.com == com) {
-            para = transicao_i.para;
+    for (Transicao i : transicoes) {
+        if (i.de.nome == de.nome && i.com == com) {
+            para = i.para;
 
             return true;
         }
