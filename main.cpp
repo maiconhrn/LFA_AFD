@@ -8,32 +8,27 @@ int main() {
 
     AFD afd;
 
-    afd.alfabeto = Alfabeto(2, vector<char>('a', 'b'));
+    afd.alfabeto = Alfabeto(vector<char>('a', 'b'));
 
     Estado q0("q0", INICIAL);
     Estado q1("q1");
     Estado q2("q2");
     Estado q3("q3", FINAL);
-    afd.n_estados = 4;
-    afd.estados.push_back(q0);
-    afd.estados.push_back(q1);
-    afd.estados.push_back(q2);
-    afd.estados.push_back(q3);
-    afd.inicial = q0;
-    afd.n_final = 1;
-    afd.final.push_back(q3);
+    afd.add_estado(q0);
+    afd.add_estado(q1);
+    afd.add_estado(q2);
+    afd.add_estado(q3);
 
     Transicao t0(q0, 'a', q1);
     Transicao t1(q1, 'a', q1);
     Transicao t2(q1, 'b', q2);
     Transicao t3(q2, 'b', q3);
     Transicao t4(q3, 'b', q2);
-    afd.n_trasicoes = 5;
-    afd.transicoes.push_back(t0);
-    afd.transicoes.push_back(t1);
-    afd.transicoes.push_back(t2);
-    afd.transicoes.push_back(t3);
-    afd.transicoes.push_back(t4);
+    afd.add_transicao(t0);
+    afd.add_transicao(t1);
+    afd.add_transicao(t2);
+    afd.add_transicao(t3);
+    afd.add_transicao(t4);
 
     cout << afd.validar_palavra("aaaaaaaabbbbbb") << endl;
     cout << afd.validar_palavra("aaaabbaaaabbbbbb") << endl;

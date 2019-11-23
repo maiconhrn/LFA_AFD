@@ -18,12 +18,11 @@ typedef enum {
 
 class Alfabeto {
 public:
-    int n_simbolos;
     vector<char> simbolos;
 
     Alfabeto();
 
-    Alfabeto(int nSimbolos, const vector<char> &simbolos);
+    Alfabeto(const vector<char> &simbolos);
 };
 
 class Estado {
@@ -50,17 +49,22 @@ public:
 };
 
 class AFD {
-public:
-    int n_estados;
+private:
     vector<Estado> estados;
-    Alfabeto alfabeto;
-    int n_trasicoes;
     vector<Transicao> transicoes;
     Estado inicial;
-    int n_final;
     vector<Estado> final;
 
+public:
+    Alfabeto alfabeto;
+
     AFD();
+
+    bool existe_estado(Estado estado);
+
+    bool add_estado(Estado estado);
+
+    bool add_transicao(Transicao transicao);
 
     bool existe_transicao(Estado de, char com, Estado &para);
 

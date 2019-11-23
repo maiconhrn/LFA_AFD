@@ -5,21 +5,17 @@
 #include "afd.h"
 
 AFD::AFD() {
-    n_estados = 0;
     estados = vector<Estado>();
     alfabeto = Alfabeto();
-    n_trasicoes = 0;
     transicoes = vector<Transicao>();
-    n_final = 0;
     final = vector<Estado>();
 }
 
 Alfabeto::Alfabeto() {
-    n_simbolos = 0;
     simbolos = vector<char>();
 }
 
-Alfabeto::Alfabeto(int nSimbolos, const vector<char> &simbolos) : n_simbolos(nSimbolos), simbolos(simbolos) {}
+Alfabeto::Alfabeto(const vector<char> &simbolos) : simbolos(simbolos) {}
 
 Estado::Estado() {}
 
@@ -56,4 +52,46 @@ bool AFD::validar_palavra(string palavra) {
     }
 
     return atual.tipo == FINAL;
+}
+
+bool AFD::existe_estado(Estado estado) {
+    for (Estado e : estados) {
+        if (e.nome == estado.nome) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+bool AFD::add_estado(Estado estado) {
+
+    if (!existe_estado(estado)) {
+        estados.push_back(estado);
+
+        switch (estado.tipo) {
+            case INICIAL:
+                inicial = estado;
+                break;
+            case FINAL:
+                final.push_back(estado);
+                break;
+            case NENHUM:
+                break;
+        }
+
+        return true;
+    }
+
+    return false;
+}
+
+bool AFD::add_transicao(Transicao transicao) {
+    if (!existe_transicao(transicao.de, transicao.com, transicao.para)) {
+        transicoes.push_back(transicao);
+
+        return true;
+    }
+
+    return false;
 }
