@@ -2,6 +2,7 @@
 // Created by Maicon on 16/11/2019.
 //
 
+#include <iostream>
 #include "afd.h"
 
 AFD::AFD() {
@@ -88,10 +89,53 @@ bool AFD::add_estado(Estado estado) {
 
 bool AFD::add_transicao(Transicao transicao) {
     if (!existe_transicao(transicao.de, transicao.com, transicao.para)) {
-        transicoes.push_back(transicao);
+        if (existe_estado(transicao.de) && existe_estado(transicao.para)) {
+            transicao.de = achar_estado(transicao.de.nome);
+            transicao.para = achar_estado(transicao.para.nome);
+
+            transicoes.push_back(transicao);
+
+            return true;
+        }
+
+        throw "algum estado da transicao nao existe nos estados do AFD";
+    }
+
+    throw "transicao ja existente";
+}
+
+bool AFD::faz_estado_inicial(string estado_nome) {
+    Estado estado(estado_nome);
+
+    if (existe_estado(estado)) {
+        Estado &e = achar_estado(estado_nome);
+        e.tipo = INICIAL;
+        inicial = e;
 
         return true;
     }
 
-    return false;
+    throw "Estado definido como inicial não esta na lista de estados";
+}
+
+bool AFD::faz_estado_final(string estado_nome) {
+    Estado estado(estado_nome);
+
+    if (existe_estado(estado)) {
+        Estado &e = achar_estado(estado_nome);
+        e.tipo = FINAL;
+        final.push_back(e);
+
+        return true;
+    }
+
+    throw "Estado definido como final não esta na lista de estados";
+}
+
+Estado &AFD::achar_estado(string nome_estado) {
+    for (Estado &e : estados) {
+        if (e.nome == nome_estado) {
+            return e;
+        }
+    }
 }

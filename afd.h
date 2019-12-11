@@ -64,6 +64,12 @@ public:
 
     bool add_estado(Estado estado);
 
+    bool faz_estado_inicial(string estado_nome);
+
+    bool faz_estado_final(string estado_nome);
+
+    Estado& achar_estado(string nome_estado);
+
     bool add_transicao(Transicao transicao);
 
     bool existe_transicao(Estado de, char com, Estado &para);
