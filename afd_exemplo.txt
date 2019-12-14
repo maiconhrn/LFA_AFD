@@ -1,10 +1,11 @@
 4 # 1) n de estados
 q0 q1 q2 q3 # 2) estados
-ab # 3) alfabeto
-q0 # 4) estado inicial
-1 # 5) n de estados finais
-q3 # 6) estados finais
-5 # 7) n de transicoes; cada linha abaixo representa uma transicao "<estado_de> <com_simbulo> <estado_para>"
+2 # 3) n de simbolos
+a b # 4) alfabeto
+q0 # 5) estado inicial
+1 # 6) n de estados finais
+q3 # 7) estados finais
+5 # 8) n de transicoes; cada linha abaixo representa uma transicao "<estado_de> <com_simbulo> <estado_para>"
 q0 a q1 # transicao 1
 q1 a q1 # transicao 2
 q1 b q2 # transicao 3

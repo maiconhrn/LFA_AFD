@@ -18,7 +18,7 @@ typedef enum {
 
 class Alfabeto {
 public:
-    vector<char> simbolos;
+        vector<char> simbolos;
 
     Alfabeto();
 
@@ -54,10 +54,9 @@ private:
     vector<Transicao> transicoes;
     Estado inicial;
     vector<Estado> final;
-
-public:
     Alfabeto alfabeto;
 
+public:
     AFD();
 
     bool existe_estado(Estado estado);
@@ -75,6 +74,8 @@ public:
     bool existe_transicao(Estado de, char com, Estado &para);
 
     bool validar_palavra(string palavra);
+
+    bool add_simbolo_alfabeto(char simbolo);
 };
 
 

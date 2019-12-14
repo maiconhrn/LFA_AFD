@@ -138,4 +138,12 @@ Estado &AFD::achar_estado(string nome_estado) {
             return e;
         }
     }
+
+    throw "Estado não encontrado";
+}
+
+bool AFD::add_simbolo_alfabeto(char simbolo) {
+    alfabeto.simbolos.push_back(simbolo);
+
+    return true;
 }

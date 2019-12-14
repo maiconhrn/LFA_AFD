@@ -6,9 +6,9 @@ using namespace std;
 
 int main() {
     try {
-        int n_estados, n_estados_finais, n_transicoes;
+        int n_estados, n_estados_finais, n_transicoes, n_simbolos_alfabeto;
         string estado_nome, alfabeto, estado_inicial, de, para;
-        char com;
+        char com, simbolo;
 
         ifstream afdDescricao("afd.txt");
 
@@ -24,8 +24,11 @@ int main() {
             }
 
             // le alfabeto
-            afdDescricao >> alfabeto;
-            afd.alfabeto = Alfabeto(vector<char>(alfabeto.begin(), alfabeto.end()));
+            afdDescricao >> n_simbolos_alfabeto;
+            for (int i = 0; i < n_simbolos_alfabeto; ++i) {
+                afdDescricao >> simbolo;
+                afd.add_simbolo_alfabeto(simbolo);
+            }
 
             // le estado inicial
             afdDescricao >> estado_inicial;
