@@ -126,6 +126,10 @@ bool AFD::faz_estado_final(string estado_nome) {
         e.tipo = FINAL;
         final.push_back(e);
 
+        if (inicial.nome == e.nome) {
+            inicial = e;
+        }
+
         return true;
     }
 
